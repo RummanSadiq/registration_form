@@ -1,5 +1,5 @@
 // UI
-import { Avatar, AvatarImage } from "../ui/avatar";
+import Image from "next/image";
 
 // Custom Component
 import FormHeader from "./FormHeader";
@@ -15,7 +15,7 @@ const InfoList = ({
   description: string;
 }) => {
   return (
-    <div className="flex flex-row justify-between border-b last:border-b-0 py-2">
+    <div className="flex flex-row justify-between border-b last:border-b-0 py-2 gap-[15%]">
       <p className="font-semibold">{title}</p>
       <p className="text-muted-foreground">{description}</p>
     </div>
@@ -35,12 +35,13 @@ export default function Success() {
       />
       <div className="flex flex-col space-y-4 mt-10">
         {profileInfo.imageSrc && (
-          <Avatar className="m-auto w-40 h-40">
-            <AvatarImage
-              src={profileInfo.imageSrc as string}
-              className="object-fill"
-            />
-          </Avatar>
+          <Image
+            src={profileInfo.imageSrc as string}
+            width={250}
+            height={250}
+            className="m-auto rounded-2xl"
+            alt="uploaded-img"
+          />
         )}
         <InfoList title={"Name"} description={userDetail.name} />
         <InfoList title={"Email"} description={userDetail.email} />

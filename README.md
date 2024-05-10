@@ -28,7 +28,8 @@ Make sure you have the following installed:
    ```bash
    npm install
    # or
-   yarn install ```
+   yarn install 
+   ```
 
 ### Running the Application
 
