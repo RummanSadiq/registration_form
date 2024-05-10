@@ -47,14 +47,16 @@ export default function UserDetailForm() {
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters long" })
-      .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-        {
-          message:
-            "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
-        }
-      )
-      .min(1, { message: "Password is required" }),
+      .regex(/[A-Z]/, {
+        message: "Password must contain at least one uppercase letter",
+      })
+      .regex(/[a-z]/, {
+        message: "Password must contain at least one lowercase letter",
+      })
+      .regex(/[0-9]/, { message: "Password must contain at least one number" })
+      .regex(/[\W_]/, {
+        message: "Password must contain at least one special character",
+      }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -151,6 +153,11 @@ export default function UserDetailForm() {
                       }
                     />
                   </FormControl>
+                  <FormDescription>
+                    {
+                      "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character."
+                    }
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
