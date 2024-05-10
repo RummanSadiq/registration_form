@@ -6,7 +6,7 @@ export interface UserDetail {
 
 export interface ProfileInfo {
   bio: string;
-  imageSrc: string;
+  imageSrc: string | ArrayBuffer | null;
 }
 
 export interface UserPreference {
